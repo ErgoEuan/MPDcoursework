@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/white"
+        >
+
+        <RelativeLayout
+            android:id="@+id/topNavBar"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp"
+            android:background="@color/grey">
+
+            <TextView
+                android:id="@+id/dateText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="20dp"
+                android:focusable="false"
+                android:clickable="true"
+                android:layout_centerVertical="true"
+                android:text="Date"
+                android:textAlignment="center"
+                android:textSize="28sp"
+                android:textColor="@color/white"
+                />
+
+            <Spinner
+                android:id="@+id/fSpinner"
+                android:spinnerMode="dropdown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_centerVertical="true" />
+
+        </RelativeLayout>
+
+<!--        <Button-->
+<!--            android:id="@+id/startButton"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_marginEnd="20dp"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:text="Press to get data"/>-->
+<!--        <TextView android:id="@+id/rawDataDisplay" android:layout_width="fill_parent" android:layout_height="wrap_content" android:textSize="20sp" android:text="Raw Data is Displayed here"/>-->
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:weightSum="100">
+
+            <ListView
+                android:id="@+id/listView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/white"
+                android:paddingTop="7dp"
+                android:paddingBottom="7dp"
+                android:layout_weight="50.0" />
+
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                tools:context=".MapsActivity"
+                android:layout_weight="50.0"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>
