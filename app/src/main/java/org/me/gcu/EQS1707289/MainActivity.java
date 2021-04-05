@@ -1,4 +1,4 @@
-package org.me.gcu.equakestartercode;
+package org.me.gcu.EQS1707289;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.Task;
 
 import android.util.Log;
 import android.view.View;
@@ -24,9 +25,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.List;
 
 
-import org.me.gcu.equakestartercode.R;
+import org.me.gcu.EQS1707289.R;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, OnClickListener {
     private TextView rawDataDisplay;
@@ -50,10 +53,16 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         Log.e("MyTag","after startButton");
         // More Code goes here
 
-        String[] values = new String[]
-                {"Red", "Green", "Blue", "Purple"};
+        List<Earthquake> values = new ArrayList<>();
+        values.add(
+                new Earthquake(
+                        "UK Earthquake alert : M  1.4 :MULL,ARGYLL AND BUTE, Thu, 01 Apr 2021 22:25:34",
+                        "Origin date/time: Thu, 01 Apr 2021 22:25:34 ; Location: MULL,ARGYLL AND BUTE ; Lat/long: 56.410,-6.210 ; Depth: 7 km ; Magnitude:  1.4",
+                        null, "MULL,ARGYLL AND BUTE", 7, 1.4,
+                        "http://earthquakes.bgs.ac.uk/earthquakes/recent_events/20210401222427.html",
+                        null, "EQUK", 56.607, -6.210));
 
-        ArrayAdapter adapter = new ArrayAdapter<String>(this,
+        EarthquakeListViewAdapter adapter = new EarthquakeListViewAdapter(this,
                 R.layout.list_item,values);
 
         listView.setAdapter(adapter);

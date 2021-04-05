@@ -1,4 +1,4 @@
-package org.me.gcu.equakestartercode;
+package org.me.gcu.EQS1707289;
 
 import org.junit.Test;
 
