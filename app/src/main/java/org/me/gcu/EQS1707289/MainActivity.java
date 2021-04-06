@@ -18,6 +18,7 @@ import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -32,12 +33,13 @@ import java.util.List;
 import org.me.gcu.EQS1707289.R;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, OnClickListener {
-    private TextView rawDataDisplay;
-    private Button startButton;
+
     private String result = "";
     private String url1="";
     private String urlSource="http://quakes.bgs.ac.uk/feeds/MhSeismology.xml";
     private ListView listView;
+    private TextView dateText;
+    private Spinner navSpinner;
     private GoogleMap mMap;
 
     @Override
@@ -46,9 +48,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         setContentView(R.layout.activity_main);
         Log.e("MyTag","in onCreate");
         // Set up the raw links to the graphical components
-//        rawDataDisplay = (TextView)findViewById(R.id.rawDataDisplay);
-//        startButton = (Button)findViewById(R.id.startButton);
-//        startButton.setOnClickListener(this);
+        dateText = findViewById(R.id.dateText);
+
+        navSpinner = findViewById(R.id.navSpinner);
+
         listView = (ListView) findViewById(R.id.listView);
         Log.e("MyTag","after startButton");
         // More Code goes here
@@ -176,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             MainActivity.this.runOnUiThread(new Runnable() {
                 public void run() {
                     Log.d("UI thread", "I am the UI thread");
-                    rawDataDisplay.setText(result);
+//                    rawDataDisplay.setText(result);
                 }
             });
         }

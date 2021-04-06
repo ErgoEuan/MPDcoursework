@@ -16,7 +16,7 @@
         >
 
         <RelativeLayout
-            android:id="@+id/topNavBar"
+            android:id="@+id/navBar"
             android:layout_width="match_parent"
             android:layout_height="75dp"
             android:paddingStart="6dp"
@@ -39,7 +39,7 @@
                 />
 
             <Spinner
-                android:id="@+id/fSpinner"
+                android:id="@+id/navSpinner"
                 android:spinnerMode="dropdown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
