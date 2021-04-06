@@ -35,17 +35,15 @@ public class EarthquakeListViewAdapter extends ArrayAdapter<Earthquake> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         String location = getItem(position).getLocation();
-        String magnitude = String.valueOf(getItem(position).getMagnitude());
+        Double magnitude = getItem(position).getMagnitude();
 
         ViewHolder holder = new ViewHolder();
 
         if(convertView ==null){
             LayoutInflater inflater = LayoutInflater.from(context);
             convertView = inflater.inflate(resource, parent, false);
-
             holder.location = convertView.findViewById(R.id.locationLabel);
             holder.magnitude = convertView.findViewById(R.id.magnitudeLabel);
-
             convertView.setTag(holder);
         }
         else {
@@ -53,11 +51,8 @@ public class EarthquakeListViewAdapter extends ArrayAdapter<Earthquake> {
         }
 
         holder.location.setText(location);
-        holder.magnitude.setText(magnitude);
-
-//        ColourManager colourManager = new ColourManager(Double.parseDouble(magnitude));
-
-//        holder.magnitude.setTextColor(Color.parseColor(colourManager.GetMagColour()));
+        holder.magnitude.setText(String.valueOf(magnitude));
+        holder.magnitude.setTextColor(Color.parseColor(ColourCoder.getColourCode(magnitude)));
 
         return convertView;
 

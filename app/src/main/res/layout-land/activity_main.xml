@@ -1,11 +1,83 @@
-<!--  MPD XML Starter code Semester B Session 2018 2019  -->
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="fill_parent" android:layout_height="fill_parent">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent">
-        <TextView android:id="@+id/salutation" android:layout_width="fill_parent" android:layout_height="wrap_content" android:textSize="20sp" android:text="Welcome to Mobile Platform Development"/>
-        <TextView android:id="@+id/salutation1" android:layout_width="fill_parent" android:layout_height="wrap_content" android:textSize="20sp" android:text="Welcome to Mobile Platform Development"/>
-        <TextView android:id="@+id/salutation2" android:layout_width="fill_parent" android:layout_height="wrap_content" android:textSize="20sp" android:text="Welcome to Mobile Platform Development"/>
-        <Button android:id="@+id/startButton" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Press to get data"/>
-        <TextView android:id="@+id/acknowledgement" android:layout_width="fill_parent" android:layout_height="wrap_content" android:textSize="20sp" android:text="Contains British Geological Survey materials ©NERC 2019"/>
-        <TextView android:id="@+id/rawDataDisplay" android:layout_width="fill_parent" android:layout_height="wrap_content" android:textSize="20sp" android:text="Raw Data is Displayed here"/>
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/white"
+        android:weightSum="100"
+        >
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:weightSum="100"
+            android:layout_weight="80.0">
+
+            <ListView
+                android:id="@+id/listView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:paddingTop="7dp"
+                android:paddingBottom="7dp"
+                android:layout_weight="50.0" />
+
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                tools:context=".MapsActivity"
+                android:layout_weight="50.0"/>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/topNavBar"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp"
+            android:background="@color/grey"
+            android:layout_weight="20.0">
+
+            <TextView
+                android:id="@+id/dateText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="20dp"
+                android:focusable="false"
+                android:clickable="true"
+                android:layout_centerVertical="true"
+                android:text="Date"
+                android:textAlignment="center"
+                android:textSize="28sp"
+                android:textColor="@color/white"
+                />
+
+            <Spinner
+                android:id="@+id/fSpinner"
+                android:spinnerMode="dropdown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_centerVertical="true" />
+
+        </RelativeLayout>
+
     </LinearLayout>
-</ScrollView>
+</RelativeLayout>

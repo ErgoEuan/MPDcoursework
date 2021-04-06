@@ -58,7 +58,28 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Earthquake(
                         "UK Earthquake alert : M  1.4 :MULL,ARGYLL AND BUTE, Thu, 01 Apr 2021 22:25:34",
                         "Origin date/time: Thu, 01 Apr 2021 22:25:34 ; Location: MULL,ARGYLL AND BUTE ; Lat/long: 56.410,-6.210 ; Depth: 7 km ; Magnitude:  1.4",
-                        null, "MULL,ARGYLL AND BUTE", 7, 1.4,
+                        null, "MULL,ARGYLL AND BUTE", 7, 3.4,
+                        "http://earthquakes.bgs.ac.uk/earthquakes/recent_events/20210401222427.html",
+                        null, "EQUK", 56.607, -6.210));
+        values.add(
+                new Earthquake(
+                        "UK Earthquake alert : M  1.4 :MULL,ARGYLL AND BUTE, Thu, 01 Apr 2021 22:25:34",
+                        "Origin date/time: Thu, 01 Apr 2021 22:25:34 ; Location: MULL,ARGYLL AND BUTE ; Lat/long: 56.410,-6.210 ; Depth: 7 km ; Magnitude:  1.4",
+                        null, "MULL,ARGYLL AND BUTE", 7, 2.8,
+                        "http://earthquakes.bgs.ac.uk/earthquakes/recent_events/20210401222427.html",
+                        null, "EQUK", 56.607, -6.210));
+        values.add(
+                new Earthquake(
+                        "UK Earthquake alert : M  1.4 :MULL,ARGYLL AND BUTE, Thu, 01 Apr 2021 22:25:34",
+                        "Origin date/time: Thu, 01 Apr 2021 22:25:34 ; Location: MULL,ARGYLL AND BUTE ; Lat/long: 56.410,-6.210 ; Depth: 7 km ; Magnitude:  1.4",
+                        null, "MULL,ARGYLL AND BUTE", 7, 1.2,
+                        "http://earthquakes.bgs.ac.uk/earthquakes/recent_events/20210401222427.html",
+                        null, "EQUK", 56.607, -6.210));
+        values.add(
+                new Earthquake(
+                        "UK Earthquake alert : M  1.4 :MULL,ARGYLL AND BUTE, Thu, 01 Apr 2021 22:25:34",
+                        "Origin date/time: Thu, 01 Apr 2021 22:25:34 ; Location: MULL,ARGYLL AND BUTE ; Lat/long: 56.410,-6.210 ; Depth: 7 km ; Magnitude:  1.4",
+                        null, "MULL,ARGYLL AND BUTE", 7, 0.6,
                         "http://earthquakes.bgs.ac.uk/earthquakes/recent_events/20210401222427.html",
                         null, "EQUK", 56.607, -6.210));
 
@@ -149,6 +170,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             // Now update the TextView to display raw XML data
             // Probably not the best way to update TextView
             // but we are just getting started !
+
+            // adapter.notifyDataSetChanged
 
             MainActivity.this.runOnUiThread(new Runnable() {
                 public void run() {
