@@ -1,9 +1,10 @@
 package org.me.gcu.EQS1707289;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class Earthquake {
+public class Earthquake implements Serializable {
 
     private String title;
     private String description;

@@ -1,6 +1,264 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/white"
+        android:weightSum="100"
+        >
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:weightSum="100"
+            android:layout_weight="80.0">
+
+            <LinearLayout
+                android:id="@+id/linearLayout5"
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:paddingVertical="50dp"
+                android:weightSum="100"
+                android:layout_weight="50">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="100"
+                    android:paddingHorizontal="15dp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp">
+
+                    <TextView
+                        android:id="@+id/magnitudeLabel2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="32sp"
+                        android:textAlignment="center"
+                        android:layout_weight="50"
+                        android:text="@string/magnitude"/>
+                    <TextView
+                        android:id="@+id/magnitudeTxt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="32sp"
+                        android:textStyle="bold"
+                        android:textAlignment="center"
+                        android:layout_weight="50"
+                        android:text="@string/Null"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="100"
+                    android:paddingHorizontal="15dp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp">
+
+                    <TextView
+                        android:id="@+id/depthLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="32sp"
+                        android:textAlignment="center"
+                        android:layout_weight="50"
+                        android:text="@string/depth"/>
+                    <TextView
+                        android:id="@+id/depthTxt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="32sp"
+                        android:textStyle="bold"
+                        android:textAlignment="center"
+                        android:layout_weight="50"
+                        android:text="@string/Null"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="100"
+                    android:paddingHorizontal="15dp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp">
+
+                    <TextView
+                        android:id="@+id/originDateLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="32sp"
+                        android:textAlignment="center"
+                        android:layout_weight="50"
+                        android:text="@string/originDate"/>
+                    <TextView
+                        android:id="@+id/originDateTxt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="32sp"
+                        android:textStyle="bold"
+                        android:textAlignment="center"
+                        android:layout_weight="50"
+                        android:text="@string/Null"/>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout6"
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:paddingVertical="50dp"
+                android:weightSum="100"
+                android:layout_weight="50">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="100"
+                    android:paddingHorizontal="15dp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp">
+
+                    <TextView
+                        android:id="@+id/categoryLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="32sp"
+                        android:textAlignment="center"
+                        android:layout_weight="50"
+                        android:text="@string/category"/>
+                    <TextView
+                        android:id="@+id/categoryTxt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="32sp"
+                        android:textStyle="bold"
+                        android:textAlignment="center"
+                        android:layout_weight="50"
+                        android:text="@string/Null"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="100"
+                    android:paddingHorizontal="15dp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp">
+
+                    <TextView
+                        android:id="@+id/latitudeLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="32sp"
+                        android:textAlignment="center"
+                        android:layout_weight="50"
+                        android:text="@string/latitude"/>
+                    <TextView
+                        android:id="@+id/latitudeTxt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="32sp"
+                        android:textStyle="bold"
+                        android:textAlignment="center"
+                        android:layout_weight="50"
+                        android:text="@string/Null"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="100"
+                    android:paddingHorizontal="15dp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp">
+
+                    <TextView
+                        android:id="@+id/longitudeLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="32sp"
+                        android:textAlignment="center"
+                        android:layout_weight="50"
+                        android:text="@string/longitude"/>
+                    <TextView
+                        android:id="@+id/longitudeTxt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="32sp"
+                        android:textStyle="bold"
+                        android:textAlignment="center"
+                        android:layout_weight="50"
+                        android:text="@string/Null"/>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/navBar2"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp"
+            android:background="@color/grey"
+            android:layout_weight="20.0">
+
+            <TextView
+                android:id="@+id/locationTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:focusable="false"
+                android:clickable="true"
+                android:layout_centerVertical="true"
+                android:text="@string/location"
+                android:textAlignment="center"
+                android:textSize="28sp"
+                android:textColor="@color/white"
+                />
+
+            <Button
+                android:id="@+id/exitButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_centerVertical="true"
+                android:text="Exit"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</RelativeLayout>

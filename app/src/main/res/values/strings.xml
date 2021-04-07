@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">EQS1707289</string>
-    <string name="fPrompt">Select Filter</string>
     <string name="google_maps_key">AIzaSyCb3jKpIvozNO5ZJuyPbX_tj8i8OgmuqjA</string>
+    <string name="Null">null</string>
+    <string name="location">Location</string>
+    <string name="magnitude">Magnitude:</string>
+    <string name="depth">Depth:</string>
+    <string name="originDate">Date:</string>
+    <string name="category">Category:</string>
+    <string name="latitude">Latitude:</string>
+    <string name="longitude">Longitude:</string>
 </resources>

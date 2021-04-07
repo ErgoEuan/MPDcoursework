@@ -2,6 +2,7 @@ package org.me.gcu.EQS1707289;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -17,6 +18,7 @@ import android.util.Log;
 import android.util.Xml;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -60,14 +62,25 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         // Set up the raw links to the graphical components
         dateText = findViewById(R.id.dateText);
 
-        navSpinner = findViewById(R.id.navSpinner);
+        navSpinner = (Spinner) findViewById(R.id.navSpinner);
 
         listView = (ListView) findViewById(R.id.listView);
-        // More Code goes here
 
         values = new ArrayList<>();
         adapter = new EarthquakeListViewAdapter(this, R.layout.list_item,values);
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Earthquake earthquake = (Earthquake) listView.getItemAtPosition(position);
+
+                Intent intent = new Intent(MainActivity.this, InfoExpandActivity.class);
+                intent.putExtra("earthquake", earthquake);
+                startActivity(intent);
+            }
+        });
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
