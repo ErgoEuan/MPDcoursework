@@ -14,8 +14,6 @@ import java.util.List;
 
 public class EarthquakeListViewAdapter extends ArrayAdapter<Earthquake> {
 
-    private static final String TAG = "EarthquakeListViewAdapter";
-
     private Context context;
     private int resource;
 

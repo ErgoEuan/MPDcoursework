@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -30,6 +31,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 import org.me.gcu.EQS1707289.R;
@@ -71,7 +74,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        startProgress();
+
+        Timer timer = new Timer();
+        TimerTask timerTask = new TimerTask() {
+            public void run() {
+                updateData();
+            }
+        };
+        timer.schedule(timerTask, 0, 60000);
 
     }
 
@@ -79,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
+        // Add a marker in UK and move the camera
         LatLng uk = new LatLng(54, -1.85);
         mMap.addMarker(new MarkerOptions()
                 .position(uk)
@@ -88,212 +98,63 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     public void onClick(View aview) {
-        Log.e("MyTag","in onClick");
-        startProgress();
-        Log.e("MyTag","after startProgress");
+//        Log.e("MyTag","in onClick");
+//        startProgress();
+//        Log.e("MyTag","after startProgress");
     }
 
-    public void startProgress() {
-        // Run network access on a separate thread;
-        new Thread(new Task(urlSource)).start();
-    } //
+    public void updateData() {
 
+        URL aurl;
+        URLConnection yc;
+        BufferedReader in = null;
+        String inputLine = "";
 
-    private List<Earthquake> readFeed(XmlPullParser parser) throws XmlPullParserException, IOException {
-        List entries = new ArrayList();
+        Log.e("MyTag","in run");
 
-        parser.require(XmlPullParser.START_TAG, null, "rss");
-        while (parser.next() != XmlPullParser.END_TAG) {
-            if (parser.getEventType() != XmlPullParser.START_TAG) {
-                continue;
+        try {
+            Log.e("MyTag","in try");
+            aurl = new URL(urlSource);
+            yc = aurl.openConnection();
+            in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
+            Log.e("MyTag","after ready");
+
+            while ((inputLine = in.readLine()) != null)
+            {
+                result = result + inputLine;
+                Log.e("MyTag",inputLine);
+
             }
-            String name = parser.getName();
-            // Starts by looking for the entry tag
-            if (name.equals("channel")) {
-                entries.addAll(readChannel(parser));
-            } else {
-                skip(parser);
-            }
+            in.close();
         }
-        return entries;
-    }
-
-    private void skip(XmlPullParser parser) throws XmlPullParserException, IOException {
-        if (parser.getEventType() != XmlPullParser.START_TAG) {
-            throw new IllegalStateException();
+        catch (IOException ae) {
+            Log.e("MyTag", "ioexception in run");
         }
-        int depth = 1;
-        while (depth != 0) {
-            switch (parser.next()) {
-                case XmlPullParser.END_TAG:
-                    depth--;
-                    break;
-                case XmlPullParser.START_TAG:
-                    depth++;
-                    break;
-            }
-        }
-    }
 
-    private List<Earthquake> readChannel(XmlPullParser parser) throws XmlPullParserException, IOException {
-        List entries = new ArrayList();
-
-        parser.require(XmlPullParser.START_TAG, null, "channel");
-        while (parser.next() != XmlPullParser.END_TAG) {
-            if (parser.getEventType() != XmlPullParser.START_TAG) {
-                continue;
-            }
-            String name = parser.getName();
-            // Starts by looking for the entry tag
-            if (name.equals("item")) {
-                entries.add(readItem(parser));
-            } else {
-                skip(parser);
-            }
-        }
-        return entries;
-    }
-
-    private Earthquake readItem(XmlPullParser parser) throws XmlPullParserException, IOException {
-        parser.require(XmlPullParser.START_TAG, null, "item");
-
-        Earthquake newEarthquake = new Earthquake(null,null,null,
-                null,null,null,null,null,null,
-                null,null);
-
-        while (parser.next() != XmlPullParser.END_TAG) {
-            if (parser.getEventType() != XmlPullParser.START_TAG) {
-                continue;
-            }
-            String name = parser.getName();
-            if (name.equals("title")) {
-                parser.require(XmlPullParser.START_TAG, null, "title");
-                newEarthquake.setTitle(readText(parser));
-                parser.require(XmlPullParser.END_TAG, null, "title");
-            } else if (name.equals("pubDate")) {
-                parser.require(XmlPullParser.START_TAG, null, "pubDate");
-                newEarthquake.setPublishedDate(readText(parser));
-                parser.require(XmlPullParser.END_TAG, null, "pubDate");
-            } else if (name.equals("category")) {
-                parser.require(XmlPullParser.START_TAG, null, "category");
-                newEarthquake.setCategory(readText(parser));
-                parser.require(XmlPullParser.END_TAG, null, "category");
-            } else if (name.equals("geo:lat")) {
-                parser.require(XmlPullParser.START_TAG, null, "geo:lat");
-                newEarthquake.setLocationLat(Double.parseDouble(readText(parser)));
-                parser.require(XmlPullParser.END_TAG, null, "geo:lat");
-            } else if (name.equals("geo:long")) {
-                parser.require(XmlPullParser.START_TAG, null, "geo:long");
-                newEarthquake.setLocationLong(Double.parseDouble(readText(parser)));
-                parser.require(XmlPullParser.END_TAG, null, "geo:long");
-            } else if (name.equals("description")) {
-                parser.require(XmlPullParser.START_TAG, null, "description");
-                filterDescription(readText(parser), newEarthquake);
-                parser.require(XmlPullParser.END_TAG, null, "description");
-            } else {
-                skip(parser);
-            }
-        }
-        return newEarthquake;
-    }
-
-    private String readText(XmlPullParser parser) throws IOException, XmlPullParserException {
-        String result = "";
-        if (parser.next() == XmlPullParser.TEXT) {
-            result = parser.getText();
+        try {
+            XmlPullParser parser = Xml.newPullParser();
+            parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+            parser.setInput(new ByteArrayInputStream(result.getBytes()), null);
             parser.nextTag();
-        }
-        return result;
-    }
-
-    private void filterDescription(String description, Earthquake newEarthquake) {
-        String[] arrayOfDesc = description.split(";");
-        newEarthquake.setOriginDate(arrayOfDesc[0].substring(18));
-        newEarthquake.setLocation(arrayOfDesc[1].substring(11));
-        newEarthquake.setDepth(Integer.parseInt(arrayOfDesc[3].substring(8, arrayOfDesc[3].length() -4)));
-        newEarthquake.setMagnitude(Double.parseDouble(arrayOfDesc[4].substring(13)));
-    }
-
-
-    // Need separate thread to access the internet resource over network
-    // Other neater solutions should be adopted in later iterations.
-    private class Task implements Runnable {
-        private String url;
-
-        public Task(String aurl)
-        {
-            url = aurl;
-        }
-        @Override
-        public void run() {
-
-            URL aurl;
-            URLConnection yc;
-            BufferedReader in = null;
-            String inputLine = "";
-
-            Log.e("MyTag","in run");
-
-            try {
-                Log.e("MyTag","in try");
-                aurl = new URL(url);
-                yc = aurl.openConnection();
-                in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
-                Log.e("MyTag","after ready");
-                //
-                // Now read the data. Make sure that there are no specific hedrs
-                // in the data file that you need to ignore.
-                // The useful data that you need is in each of the item entries
-                //
-
-                while ((inputLine = in.readLine()) != null)
-                {
-                    result = result + inputLine;
-                    Log.e("MyTag",inputLine);
-
-                }
-                in.close();
-            }
-            catch (IOException ae) {
-                Log.e("MyTag", "ioexception in run");
-            }
-
-            try {
-                XmlPullParser parser = Xml.newPullParser();
-                parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-                parser.setInput(new ByteArrayInputStream(result.getBytes()), null);
-                parser.nextTag();
-                values.clear();
-                values.addAll(readFeed(parser));
-            } catch (XmlPullParserException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-
-            }
-
-//            adapter.
-            //
-            // Now that you have the xml data you can parse it
-            //
-
-
-            // Now update the TextView to display raw XML data
-            // Probably not the best way to update TextView
-            // but we are just getting started !
-
-            // adapter.notifyDataSetChanged
-
-            MainActivity.this.runOnUiThread(new Runnable() {
-                public void run() {
-                    adapter.notifyDataSetChanged();
-                    Log.d("UI thread", "I am the UI thread");
-//                    rawDataDisplay.setText(result);
-                }
-            });
+            XMLParser xmlParser = new XMLParser();
+            values.clear();
+            values.addAll(xmlParser.readFeed(parser));
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
         }
 
+        MainActivity.this.runOnUiThread(new Runnable() {
+            public void run() {
+                adapter.notifyDataSetChanged();
+
+                Toast.makeText(getApplicationContext(),
+                        "Data Updated",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }
