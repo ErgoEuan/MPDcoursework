@@ -7,12 +7,12 @@ public class Earthquake {
 
     private String title;
     private String description;
-    private LocalDateTime originDate;
+    private String originDate;
     private String location;
     private Integer depth;
     private Double magnitude;
     private String link;
-    private LocalDateTime publishedDate;
+    private String publishedDate;
     private String category;
     private Double locationLat;
     private Double locationLong;
@@ -37,11 +37,11 @@ public class Earthquake {
         this.description = description;
     }
 
-    public LocalDateTime getOriginDate() {
+    public String getOriginDate() {
         return originDate;
     }
 
-    public void setOriginDate(LocalDateTime originDate) {
+    public void setOriginDate(String originDate) {
         this.originDate = originDate;
     }
 
@@ -77,11 +77,11 @@ public class Earthquake {
         this.link = link;
     }
 
-    public LocalDateTime getPublishedDate() {
+    public String getPublishedDate() {
         return publishedDate;
     }
 
-    public void setPublishedDate(LocalDateTime publishedDate) {
+    public void setPublishedDate(String publishedDate) {
         this.publishedDate = publishedDate;
     }
 
@@ -109,8 +109,8 @@ public class Earthquake {
         this.locationLong = locationLong;
     }
 
-    public Earthquake(String title, String description, LocalDateTime originDate, String location,
-                      Integer depth, Double magnitude, String link, LocalDateTime publishedDate,
+    public Earthquake(String title, String description, String originDate, String location,
+                      Integer depth, Double magnitude, String link, String publishedDate,
                       String category, Double locationLat, Double locationLong) {
         this.title = title;
         this.description = description;
