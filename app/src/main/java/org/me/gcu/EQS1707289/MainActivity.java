@@ -8,6 +8,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.Task;
@@ -62,7 +63,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         navSpinner = findViewById(R.id.navSpinner);
 
         listView = (ListView) findViewById(R.id.listView);
-        Log.e("MyTag","after startButton");
         // More Code goes here
 
         values = new ArrayList<>();
@@ -88,13 +88,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        // Add a marker in UK and move the camera
-        LatLng uk = new LatLng(54, -1.85);
-        mMap.addMarker(new MarkerOptions()
-                .position(uk)
-                .title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(uk));
     }
 
     public void onClick(View aview) {
@@ -147,6 +140,19 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         MainActivity.this.runOnUiThread(new Runnable() {
             public void run() {
                 adapter.notifyDataSetChanged();
+
+                LatLng uk = new LatLng(55, -2);
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(uk, 4.0f));
+                mMap.clear();
+
+                for (Earthquake e : values) {
+                    index = R.drawable.marker_circle_white;
+                    LatLng eLatLng = new LatLng(e.getLocationLat(), e.getLocationLong());
+                    mMap.addMarker(new MarkerOptions().position(eLatLng)
+                            .title(e.getLocation())
+                            .icon(BitmapDescriptorFactory.fromResource(colourManager.GetMarkerResourceIndex()))
+                    );
+                }
 
                 Toast.makeText(getApplicationContext(),
                         "Data Updated",
