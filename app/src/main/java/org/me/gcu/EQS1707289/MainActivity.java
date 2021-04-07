@@ -146,11 +146,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 mMap.clear();
 
                 for (Earthquake e : values) {
-                    index = R.drawable.marker_circle_white;
                     LatLng eLatLng = new LatLng(e.getLocationLat(), e.getLocationLong());
                     mMap.addMarker(new MarkerOptions().position(eLatLng)
                             .title(e.getLocation())
-                            .icon(BitmapDescriptorFactory.fromResource(colourManager.GetMarkerResourceIndex()))
+                            .icon(BitmapDescriptorFactory.fromResource(ColourCoder.getMarkerColour(e.getMagnitude())))
                     );
                 }
 

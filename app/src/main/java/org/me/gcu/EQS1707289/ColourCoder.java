@@ -21,4 +21,25 @@ public class ColourCoder {
 
         return textColour;
     }
+
+    public static int getMarkerColour(Double magnitude){
+
+        int markerColour;
+
+        if(magnitude >=3){
+            markerColour = R.drawable.red_marker;
+        }
+        else if(magnitude >=2){
+            markerColour = R.drawable.orange_marker;
+        }
+        else if (magnitude >=1){
+            markerColour = R.drawable.yellow_marker;
+        }
+        else{
+            markerColour = R.drawable.green_marker;
+        }
+
+        return markerColour;
+    }
+
 }
