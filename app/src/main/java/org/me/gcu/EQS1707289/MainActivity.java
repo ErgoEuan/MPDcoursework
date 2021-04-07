@@ -122,8 +122,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             while ((inputLine = in.readLine()) != null)
             {
                 result = result + inputLine;
-                Log.e("MyTag",inputLine);
-
             }
             in.close();
         }
