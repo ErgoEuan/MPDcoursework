@@ -41,7 +41,7 @@ public class EarthquakeListViewAdapter extends ArrayAdapter<Earthquake> {
             magnitude = getItem(position).getMagnitude();
 
         }
-        
+
         ViewHolder holder = new ViewHolder();
 
         if(convertView ==null){
