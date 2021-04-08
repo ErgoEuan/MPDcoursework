@@ -122,7 +122,7 @@ public class XMLParser {
 
     private void filterDescription(String description, Earthquake newEarthquake) {
         String[] arrayOfDesc = description.split(";");
-        newEarthquake.setOriginDate(arrayOfDesc[0].substring(18));
+        newEarthquake.setOriginDate(arrayOfDesc[0].substring(23, arrayOfDesc[0].length() -10 ));
         newEarthquake.setLocation(arrayOfDesc[1].substring(11));
         newEarthquake.setDepth(Integer.parseInt(arrayOfDesc[3].substring(8, arrayOfDesc[3].length() -4)));
         newEarthquake.setMagnitude(Double.parseDouble(arrayOfDesc[4].substring(13)));

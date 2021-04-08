@@ -52,20 +52,19 @@
             android:background="@color/grey"
             android:layout_weight="20.0">
 
-            <TextView
-                android:id="@+id/dateText"
+            <Button
+                android:id="@+id/datePickerButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginEnd="20dp"
-                android:focusable="false"
-                android:clickable="true"
-                android:layout_centerVertical="true"
                 android:text="@string/date"
-                android:textAlignment="center"
                 android:textSize="28sp"
                 android:textColor="@color/white"
-                />
+                style="?android:spinnerStyle"
+                android:layout_centerVertical="true"
+                android:textAlignment="center"
+                android:onClick="openDatePicker"/>
 
             <Spinner
                 android:id="@+id/navSpinner"
