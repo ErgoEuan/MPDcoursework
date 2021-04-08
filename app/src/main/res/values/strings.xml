@@ -9,4 +9,13 @@
     <string name="category">Category:</string>
     <string name="latitude">Latitude:</string>
     <string name="longitude">Longitude:</string>
+    <string-array name="filter_array">
+        <item>Show All</item>
+        <item>Largest Magnitude</item>
+        <item>Deepest Earthquake</item>
+        <item>Most Northerly</item>
+        <item>Most Easterly</item>
+        <item>Most Southerly</item>
+        <item>Most Westerly</item>
+    </string-array>
 </resources>

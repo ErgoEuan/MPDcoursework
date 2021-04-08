@@ -3,6 +3,7 @@ package org.me.gcu.EQS1707289;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -42,7 +43,7 @@ import org.me.gcu.EQS1707289.R;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, OnClickListener {
+public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, AdapterView.OnItemSelectedListener {
 
     private String result = "";
     private String url1="";
@@ -52,7 +53,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private Spinner navSpinner;
     private GoogleMap mMap;
     private EarthquakeListViewAdapter adapter;
+    private ArrayAdapter filterAdapter;
     private List<Earthquake> values;
+    private List<Earthquake> displayValues;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,11 +66,17 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         dateText = findViewById(R.id.dateText);
 
         navSpinner = (Spinner) findViewById(R.id.navSpinner);
+        filterAdapter = ArrayAdapter.createFromResource(
+                this, R.array.filter_array, android.R.layout.simple_spinner_item);
+        filterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        navSpinner.setAdapter(filterAdapter);
+        navSpinner.setOnItemSelectedListener(this);
 
         listView = (ListView) findViewById(R.id.listView);
 
         values = new ArrayList<>();
-        adapter = new EarthquakeListViewAdapter(this, R.layout.list_item,values);
+        displayValues = new ArrayList<>();
+        adapter = new EarthquakeListViewAdapter(this, R.layout.list_item,displayValues);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -103,10 +112,104 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap = googleMap;
     }
 
-    public void onClick(View aview) {
-//        Log.e("MyTag","in onClick");
-//        startProgress();
-//        Log.e("MyTag","after startProgress");
+    @Override
+    public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+        if (arg0 == navSpinner) {
+            updateList();
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> arg0) {
+    }
+
+    public void updateList() {
+
+        displayValues.clear();
+
+        String text = (String)navSpinner.getSelectedItem();
+        if (text.equals("Show All")) {
+            displayValues.addAll(values);
+        }
+        else if (text.equals("Largest Magnitude")) {
+            Earthquake lMagnitude = null;
+            for (Earthquake e : values) {
+                if (lMagnitude == null || lMagnitude.getMagnitude() < e.getMagnitude()) {
+                    lMagnitude = e;
+                }
+            }
+            displayValues.add(lMagnitude);
+        }
+        else if (text.equals("Deepest Earthquake")) {
+            Earthquake deepestEarthquake = null;
+            for (Earthquake e : values) {
+                if (deepestEarthquake == null || deepestEarthquake.getDepth() < e.getDepth()) {
+                    deepestEarthquake = e;
+                }
+            }
+            displayValues.add(deepestEarthquake);
+        }
+        else if (text.equals("Most Northerly")) {
+            Earthquake mostNortherly = null;
+            for (Earthquake e : values) {
+                if (mostNortherly == null || mostNortherly.getLocationLat() < e.getLocationLat()) {
+                    mostNortherly = e;
+                }
+            }
+            displayValues.add(mostNortherly);
+        }
+        else if (text.equals("Most Easterly")) {
+            Earthquake mostEasterly = null;
+            for (Earthquake e : values) {
+                if (mostEasterly == null || mostEasterly.getLocationLong() < e.getLocationLong()) {
+                    mostEasterly = e;
+                }
+            }
+            displayValues.add(mostEasterly);
+        }
+        else if (text.equals("Most Southerly")) {
+            Earthquake mostSoutherly = null;
+            for (Earthquake e : values) {
+                if (mostSoutherly == null || mostSoutherly.getLocationLat() > e.getLocationLat()) {
+                    mostSoutherly = e;
+                }
+            }
+            displayValues.add(mostSoutherly);
+        }
+        else if (text.equals("Most Westerly")) {
+            Earthquake mostWesterly = null;
+            for (Earthquake e : values) {
+                if (mostWesterly == null || mostWesterly.getLocationLong() > e.getLocationLong()) {
+                    mostWesterly = e;
+                }
+            }
+            displayValues.add(mostWesterly);
+        }
+
+        MainActivity.this.runOnUiThread(new Runnable() {
+            public void run() {
+                adapter.notifyDataSetChanged();
+
+                if (mMap != null) {
+                    LatLng uk = new LatLng(55, -2);
+                    mMap.clear();
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(uk, 4.0f));
+
+                    for (Earthquake e : displayValues) {
+                        LatLng eLatLng = new LatLng(e.getLocationLat(), e.getLocationLong());
+                        mMap.addMarker(new MarkerOptions().position(eLatLng)
+                                .title(e.getLocation())
+                                .icon(BitmapDescriptorFactory.fromResource(ColourCoder.getMarkerColour(e.getMagnitude())))
+                        );
+                    }
+                }
+
+                Toast.makeText(getApplicationContext(),
+                        "Data Updated",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     public void updateData() {
@@ -150,27 +253,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         } finally {
         }
 
-        MainActivity.this.runOnUiThread(new Runnable() {
-            public void run() {
-                adapter.notifyDataSetChanged();
+        updateList();
 
-                LatLng uk = new LatLng(55, -2);
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(uk, 4.0f));
-                mMap.clear();
-
-                for (Earthquake e : values) {
-                    LatLng eLatLng = new LatLng(e.getLocationLat(), e.getLocationLong());
-                    mMap.addMarker(new MarkerOptions().position(eLatLng)
-                            .title(e.getLocation())
-                            .icon(BitmapDescriptorFactory.fromResource(ColourCoder.getMarkerColour(e.getMagnitude())))
-                    );
-                }
-
-                Toast.makeText(getApplicationContext(),
-                        "Data Updated",
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
 }
