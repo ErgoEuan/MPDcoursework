@@ -32,7 +32,7 @@
                 android:focusable="false"
                 android:clickable="true"
                 android:layout_centerVertical="true"
-                android:text="Date"
+                android:text="@string/date"
                 android:textAlignment="center"
                 android:textSize="28sp"
                 android:textColor="@color/white"

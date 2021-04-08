@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">EQS1707289</string>
     <string name="google_maps_key">AIzaSyCb3jKpIvozNO5ZJuyPbX_tj8i8OgmuqjA</string>
+    <string name="date">Date</string>
     <string name="Null">null</string>
     <string name="location">Location</string>
     <string name="magnitude">Magnitude:</string>
