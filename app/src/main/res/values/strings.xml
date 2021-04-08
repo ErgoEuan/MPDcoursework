@@ -13,7 +13,7 @@
     <string name="latitude">Latitude:</string>
     <string name="longitude">Longitude:</string>
     <string name="link">Link:</string>
-    
+
     <string-array name="filter_array">
         <item>Show All</item>
         <item>Largest Magnitude</item>
