@@ -19,9 +19,7 @@ public class Earthquake implements Serializable {
     private Double locationLat;
     private Double locationLong;
 
-    public Earthquake(){
-
-    }
+    public Earthquake(){}
 
     public String getTitle() {
         return title;

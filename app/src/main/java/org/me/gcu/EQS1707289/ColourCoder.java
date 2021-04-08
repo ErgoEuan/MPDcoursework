@@ -22,7 +22,7 @@ public class ColourCoder {
         return textColour;
     }
 
-    public static int getMarkerColour(Double magnitude){
+    public static int getColourMarker(Double magnitude){
 
         int markerColour;
 

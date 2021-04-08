@@ -53,7 +53,6 @@ public class EarthquakeListViewAdapter extends ArrayAdapter<Earthquake> {
         holder.magnitude.setTextColor(Color.parseColor(ColourCoder.getColourCode(magnitude)));
 
         return convertView;
-
     }
 
 }

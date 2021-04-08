@@ -163,7 +163,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         int style = AlertDialog.THEME_HOLO_LIGHT;
 
         datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
-
     }
 
     private String makeDateString(int day, int month, int year) {
@@ -201,8 +200,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         if(month == 12)
             return "Dec";
 
-        //default should never happen
-        return "JAN";
+        return "Jan";
     }
 
     public void openDatePicker(View view)
@@ -297,7 +295,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         LatLng eLatLng = new LatLng(e.getLocationLat(), e.getLocationLong());
                         mMap.addMarker(new MarkerOptions().position(eLatLng)
                                 .title(e.getLocation())
-                                .icon(BitmapDescriptorFactory.fromResource(ColourCoder.getMarkerColour(e.getMagnitude())))
+                                .icon(BitmapDescriptorFactory.fromResource(ColourCoder.getColourMarker(e.getMagnitude())))
                         );
                     }
                 }
@@ -307,7 +305,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     public void updateData() {
@@ -348,7 +345,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
 
         updateList();
-
     }
 
 }

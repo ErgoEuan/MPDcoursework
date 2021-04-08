@@ -86,7 +86,6 @@ public class InfoExpandActivity extends AppCompatActivity {
         latitudeTxt.setText(String.valueOf(earthquake.getLocationLat()));
         longitudeTxt.setText(String.valueOf(earthquake.getLocationLong()));
         linkTxt.setText(String.valueOf(earthquake.getLink()));
-
     }
 
 }
