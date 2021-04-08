@@ -44,6 +44,7 @@ public class InfoExpandActivity extends AppCompatActivity {
     private TextView magnitudeTxt;
     private TextView depthTxt;
     private TextView originDateTxt;
+    private TextView originTimeTxt;
     private TextView categoryTxt;
     private TextView latitudeTxt;
     private TextView longitudeTxt;
@@ -59,6 +60,7 @@ public class InfoExpandActivity extends AppCompatActivity {
         magnitudeTxt = findViewById(R.id.magnitudeTxt);
         depthTxt = findViewById(R.id.depthTxt);
         originDateTxt = findViewById(R.id.originDateTxt);
+        originTimeTxt = findViewById(R.id.originTimeTxt);
         categoryTxt = findViewById(R.id.categoryTxt);
         latitudeTxt = findViewById(R.id.latitudeTxt);
         longitudeTxt = findViewById(R.id.longitudeTxt);
@@ -79,6 +81,7 @@ public class InfoExpandActivity extends AppCompatActivity {
         magnitudeTxt.setTextColor(Color.parseColor(ColourCoder.getColourCode(earthquake.getMagnitude())));
         depthTxt.setText(String.valueOf(earthquake.getDepth())+" km");
         originDateTxt.setText(earthquake.getOriginDate());
+        originTimeTxt.setText(earthquake.getOriginTime());
         categoryTxt.setText(earthquake.getCategory());
         latitudeTxt.setText(String.valueOf(earthquake.getLocationLat()));
         longitudeTxt.setText(String.valueOf(earthquake.getLocationLong()));

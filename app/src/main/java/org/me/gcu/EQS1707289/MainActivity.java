@@ -55,11 +55,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private ListView listView;
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
+    private String selectedDate=null;
     private Spinner navSpinner;
     private GoogleMap mMap;
     private EarthquakeListViewAdapter adapter;
     private ArrayAdapter filterAdapter;
     private List<Earthquake> values;
+    private List<Earthquake> dateValues;
     private List<Earthquake> displayValues;
 
     @Override
@@ -83,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         // ListView
         listView = (ListView) findViewById(R.id.listView);
         values = new ArrayList<>();
+        dateValues = new ArrayList<>();
         displayValues = new ArrayList<>();
         adapter = new EarthquakeListViewAdapter(this, R.layout.list_item,displayValues);
         listView.setAdapter(adapter);
@@ -147,6 +150,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 month = month + 1;
                 String date = makeDateString(day, month, year);
                 dateButton.setText(date);
+                selectedDate = date;
+                updateList();
             }
         };
 
@@ -203,15 +208,18 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     public void updateList() {
 
+        dateValues.addAll(values);
+
         displayValues.clear();
+        Log.e("selectedDate", "Current date in update list "+selectedDate);
 
         String text = (String)navSpinner.getSelectedItem();
         if (text.equals("Show All")) {
-            displayValues.addAll(values);
+            displayValues.addAll(dateValues);
         }
         else if (text.equals("Largest Magnitude")) {
             Earthquake lMagnitude = null;
-            for (Earthquake e : values) {
+            for (Earthquake e : dateValues) {
                 if (lMagnitude == null || lMagnitude.getMagnitude() < e.getMagnitude()) {
                     lMagnitude = e;
                 }
@@ -220,7 +228,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
         else if (text.equals("Deepest Earthquake")) {
             Earthquake deepestEarthquake = null;
-            for (Earthquake e : values) {
+            for (Earthquake e : dateValues) {
                 if (deepestEarthquake == null || deepestEarthquake.getDepth() < e.getDepth()) {
                     deepestEarthquake = e;
                 }
@@ -229,7 +237,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
         else if (text.equals("Most Northerly")) {
             Earthquake mostNortherly = null;
-            for (Earthquake e : values) {
+            for (Earthquake e : dateValues) {
                 if (mostNortherly == null || mostNortherly.getLocationLat() < e.getLocationLat()) {
                     mostNortherly = e;
                 }
@@ -238,7 +246,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
         else if (text.equals("Most Easterly")) {
             Earthquake mostEasterly = null;
-            for (Earthquake e : values) {
+            for (Earthquake e : dateValues) {
                 if (mostEasterly == null || mostEasterly.getLocationLong() < e.getLocationLong()) {
                     mostEasterly = e;
                 }
@@ -247,7 +255,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
         else if (text.equals("Most Southerly")) {
             Earthquake mostSoutherly = null;
-            for (Earthquake e : values) {
+            for (Earthquake e : dateValues) {
                 if (mostSoutherly == null || mostSoutherly.getLocationLat() > e.getLocationLat()) {
                     mostSoutherly = e;
                 }
@@ -256,7 +264,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
         else if (text.equals("Most Westerly")) {
             Earthquake mostWesterly = null;
-            for (Earthquake e : values) {
+            for (Earthquake e : dateValues) {
                 if (mostWesterly == null || mostWesterly.getLocationLong() > e.getLocationLong()) {
                     mostWesterly = e;
                 }

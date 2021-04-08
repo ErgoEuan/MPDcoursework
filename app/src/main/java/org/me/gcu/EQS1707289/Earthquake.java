@@ -9,6 +9,7 @@ public class Earthquake implements Serializable {
     private String title;
     private String description;
     private String originDate;
+    private String originTime;
     private String location;
     private Integer depth;
     private Double magnitude;
@@ -44,6 +45,14 @@ public class Earthquake implements Serializable {
 
     public void setOriginDate(String originDate) {
         this.originDate = originDate;
+    }
+
+    public String getOriginTime() {
+        return originTime;
+    }
+
+    public void setOriginTime(String originTime) {
+        this.originTime = originTime;
     }
 
     public String getLocation() {
@@ -110,12 +119,13 @@ public class Earthquake implements Serializable {
         this.locationLong = locationLong;
     }
 
-    public Earthquake(String title, String description, String originDate, String location,
+    public Earthquake(String title, String description, String originDate, String originTime, String location,
                       Integer depth, Double magnitude, String link, String publishedDate,
                       String category, Double locationLat, Double locationLong) {
         this.title = title;
         this.description = description;
         this.originDate = originDate;
+        this.originTime = originTime;
         this.location = location;
         this.depth = depth;
         this.magnitude = magnitude;
