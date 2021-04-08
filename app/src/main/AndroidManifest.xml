@@ -15,14 +15,14 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name="org.me.gcu.EQS1707289.MainActivity">
+        <activity android:name="org.me.gcu.EQS1707289.MainActivity" android:configChanges="orientation|keyboardHidden|keyboard|screenLayout">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="org.me.gcu.EQS1707289.InfoExpandActivity">
+        <activity android:name="org.me.gcu.EQS1707289.InfoExpandActivity" android:configChanges="orientation|keyboardHidden|keyboard|screenLayout">
 
         </activity>
     </application>

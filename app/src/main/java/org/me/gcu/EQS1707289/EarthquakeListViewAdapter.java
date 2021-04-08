@@ -32,9 +32,16 @@ public class EarthquakeListViewAdapter extends ArrayAdapter<Earthquake> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        String location = getItem(position).getLocation();
-        Double magnitude = getItem(position).getMagnitude();
+        String location = "";
+        Double magnitude = 0.0;
 
+        if (getItem(position) != null) {
+
+            location = getItem(position).getLocation();
+            magnitude = getItem(position).getMagnitude();
+
+        }
+        
         ViewHolder holder = new ViewHolder();
 
         if(convertView ==null){
