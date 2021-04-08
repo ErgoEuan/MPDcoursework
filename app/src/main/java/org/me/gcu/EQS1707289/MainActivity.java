@@ -163,39 +163,43 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         int style = AlertDialog.THEME_HOLO_LIGHT;
 
         datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
-        //datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
 
     }
 
     private String makeDateString(int day, int month, int year) {
-        return day + " " + getMonthFormat(month) + " " + year;
+        if (day <= 9) {
+            return "0" + day + " " + getMonthFormat(month) + " " + year;
+        }
+        else {
+            return day + " " + getMonthFormat(month) + " " + year;
+        }
     }
 
     private String getMonthFormat(int month) {
         if(month == 1)
-            return "JAN";
+            return "Jan";
         if(month == 2)
-            return "FEB";
+            return "Feb";
         if(month == 3)
-            return "MAR";
+            return "Mar";
         if(month == 4)
-            return "APR";
+            return "Apr";
         if(month == 5)
-            return "MAY";
+            return "May";
         if(month == 6)
-            return "JUN";
+            return "Jun";
         if(month == 7)
-            return "JUL";
+            return "Jul";
         if(month == 8)
-            return "AUG";
+            return "Aug";
         if(month == 9)
-            return "SEP";
+            return "Sep";
         if(month == 10)
-            return "OCT";
+            return "Oct";
         if(month == 11)
-            return "NOV";
+            return "Nov";
         if(month == 12)
-            return "DEC";
+            return "Dec";
 
         //default should never happen
         return "JAN";
@@ -208,11 +212,19 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     public void updateList() {
 
-        dateValues.addAll(values);
+        dateValues.clear();
+        if (selectedDate == null) {
+            dateValues.addAll(values);
+        }
+        else {
+            for (Earthquake e : values) {
+                if (selectedDate.equals(e.getOriginDate())) {
+                    dateValues.add(e);
+                }
+            }
+        }
 
         displayValues.clear();
-        Log.e("selectedDate", "Current date in update list "+selectedDate);
-
         String text = (String)navSpinner.getSelectedItem();
         if (text.equals("Show All")) {
             displayValues.addAll(dateValues);
@@ -305,14 +317,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         BufferedReader in = null;
         String inputLine = "";
 
-        Log.e("MyTag","in run");
-
         try {
-            Log.e("MyTag","in try");
             aurl = new URL(urlSource);
             yc = aurl.openConnection();
             in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
-            Log.e("MyTag","after ready");
 
             while ((inputLine = in.readLine()) != null)
             {
