@@ -62,9 +62,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.e("MyTag","in onCreate");
-        // Set up the raw links to the graphical components
+
+        // Date
         dateText = findViewById(R.id.dateText);
 
+        // Spinner
         navSpinner = (Spinner) findViewById(R.id.navSpinner);
         filterAdapter = ArrayAdapter.createFromResource(
                 this, R.array.filter_array, R.layout.ghost_text);
@@ -72,13 +74,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         navSpinner.setAdapter(filterAdapter);
         navSpinner.setOnItemSelectedListener(this);
 
+        // ListView
         listView = (ListView) findViewById(R.id.listView);
-
         values = new ArrayList<>();
         displayValues = new ArrayList<>();
         adapter = new EarthquakeListViewAdapter(this, R.layout.list_item,displayValues);
         listView.setAdapter(adapter);
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-
+        // Data Update
         Timer timer = new Timer();
         TimerTask timerTask = new TimerTask() {
             public void run() {

@@ -80,6 +80,10 @@ public class XMLParser {
                 parser.require(XmlPullParser.START_TAG, null, "title");
                 newEarthquake.setTitle(readText(parser));
                 parser.require(XmlPullParser.END_TAG, null, "title");
+            } else if (name.equals("link")) {
+                parser.require(XmlPullParser.START_TAG, null, "link");
+                newEarthquake.setLink(readText(parser));
+                parser.require(XmlPullParser.END_TAG, null, "link");
             } else if (name.equals("pubDate")) {
                 parser.require(XmlPullParser.START_TAG, null, "pubDate");
                 newEarthquake.setPublishedDate(readText(parser));

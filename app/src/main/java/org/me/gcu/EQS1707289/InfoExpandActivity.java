@@ -47,6 +47,7 @@ public class InfoExpandActivity extends AppCompatActivity {
     private TextView categoryTxt;
     private TextView latitudeTxt;
     private TextView longitudeTxt;
+    private TextView linkTxt;
     private Button exitButton;
 
     @Override
@@ -61,6 +62,7 @@ public class InfoExpandActivity extends AppCompatActivity {
         categoryTxt = findViewById(R.id.categoryTxt);
         latitudeTxt = findViewById(R.id.latitudeTxt);
         longitudeTxt = findViewById(R.id.longitudeTxt);
+        linkTxt = findViewById(R.id.linkTxt);
         exitButton = findViewById(R.id.exitButton);
 
         Earthquake earthquake = (Earthquake)getIntent().getSerializableExtra("earthquake");
@@ -80,6 +82,7 @@ public class InfoExpandActivity extends AppCompatActivity {
         categoryTxt.setText(earthquake.getCategory());
         latitudeTxt.setText(String.valueOf(earthquake.getLocationLat()));
         longitudeTxt.setText(String.valueOf(earthquake.getLocationLong()));
+        linkTxt.setText(String.valueOf(earthquake.getLink()));
 
     }
 
