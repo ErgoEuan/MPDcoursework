@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         navSpinner = (Spinner) findViewById(R.id.navSpinner);
         filterAdapter = ArrayAdapter.createFromResource(
-                this, R.array.filter_array, android.R.layout.simple_spinner_item);
+                this, R.array.filter_array, R.layout.ghost_text);
         filterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         navSpinner.setAdapter(filterAdapter);
         navSpinner.setOnItemSelectedListener(this);
@@ -113,15 +113,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     @Override
-    public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-        if (arg0 == navSpinner) {
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        if (parent == navSpinner) {
             updateList();
         }
     }
 
     @Override
-    public void onNothingSelected(AdapterView<?> arg0) {
-    }
+    public void onNothingSelected(AdapterView<?> arg0) {}
 
     public void updateList() {
 

@@ -74,7 +74,7 @@ public class InfoExpandActivity extends AppCompatActivity {
 
         locationTxt.setText(earthquake.getLocation());
         magnitudeTxt.setText(String.valueOf(earthquake.getMagnitude()));
-//        magnitudeTextView.setTextColor(Color.parseColor(magColour));
+        magnitudeTxt.setTextColor(Color.parseColor(ColourCoder.getColourCode(earthquake.getMagnitude())));
         depthTxt.setText(String.valueOf(earthquake.getDepth())+" km");
         originDateTxt.setText(earthquake.getOriginDate());
         categoryTxt.setText(earthquake.getCategory());
