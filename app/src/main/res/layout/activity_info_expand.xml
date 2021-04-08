@@ -27,14 +27,14 @@
                 android:id="@+id/locationTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:focusable="false"
                 android:clickable="true"
                 android:layout_centerVertical="true"
                 android:text="@string/location"
                 android:textAlignment="center"
-                android:textSize="28sp"
+                android:textSize="20sp"
                 android:textColor="@color/white"
                 />
 
@@ -43,8 +43,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="20dp"
-                android:layout_marginStart="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_centerVertical="true"
                 android:text="Exit"/>
 
@@ -71,7 +71,7 @@
                     android:id="@+id/magnitudeLabel2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textSize="32sp"
+                    android:textSize="20sp"
                     android:textAlignment="center"
                     android:layout_weight="50"
                     android:text="@string/magnitude"/>
@@ -79,7 +79,7 @@
                     android:id="@+id/magnitudeTxt"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textSize="32sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     android:textAlignment="center"
                     android:layout_weight="50"
@@ -100,7 +100,7 @@
                     android:id="@+id/depthLabel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textSize="32sp"
+                    android:textSize="20sp"
                     android:textAlignment="center"
                     android:layout_weight="50"
                     android:text="@string/depth"/>
@@ -108,36 +108,7 @@
                     android:id="@+id/depthTxt"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textSize="32sp"
-                    android:textStyle="bold"
-                    android:textAlignment="center"
-                    android:layout_weight="50"
-                    android:text="@string/Null"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="100"
-                android:paddingHorizontal="40dp"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp">
-
-                <TextView
-                    android:id="@+id/originDateLabel"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:textSize="32sp"
-                    android:textAlignment="center"
-                    android:layout_weight="50"
-                    android:text="@string/originDate"/>
-                <TextView
-                    android:id="@+id/originDateTxt"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:textSize="32sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     android:textAlignment="center"
                     android:layout_weight="50"
@@ -158,7 +129,7 @@
                     android:id="@+id/categoryLabel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textSize="32sp"
+                    android:textSize="20sp"
                     android:textAlignment="center"
                     android:layout_weight="50"
                     android:text="@string/category"/>
@@ -166,7 +137,7 @@
                     android:id="@+id/categoryTxt"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textSize="32sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     android:textAlignment="center"
                     android:layout_weight="50"
@@ -187,7 +158,7 @@
                     android:id="@+id/latitudeLabel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textSize="32sp"
+                    android:textSize="20sp"
                     android:textAlignment="center"
                     android:layout_weight="50"
                     android:text="@string/latitude"/>
@@ -195,7 +166,7 @@
                     android:id="@+id/latitudeTxt"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textSize="32sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     android:textAlignment="center"
                     android:layout_weight="50"
@@ -216,7 +187,7 @@
                     android:id="@+id/longitudeLabel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textSize="32sp"
+                    android:textSize="20sp"
                     android:textAlignment="center"
                     android:layout_weight="50"
                     android:text="@string/longitude"/>
@@ -224,7 +195,36 @@
                     android:id="@+id/longitudeTxt"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textSize="32sp"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:layout_weight="50"
+                    android:text="@string/Null"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="100"
+                android:paddingHorizontal="40dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp">
+
+                <TextView
+                    android:id="@+id/originDateLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textAlignment="center"
+                    android:layout_weight="50"
+                    android:text="@string/originDate"/>
+                <TextView
+                    android:id="@+id/originDateTxt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     android:textAlignment="center"
                     android:layout_weight="50"
